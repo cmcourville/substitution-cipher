@@ -36,7 +36,6 @@ def map_cipher_to_english_frequency(sorted_cipher_frequency: list) -> dict:
         if i < len(ENGLISH_LETTER_FREQUENCY):
             english_letter = ENGLISH_LETTER_FREQUENCY[i][0]
             cipher_to_english[cipher_letter] = english_letter
-    print(cipher_to_english)
     return cipher_to_english
 
 
@@ -76,19 +75,19 @@ def decrypt_and_save_to_file(cipher_text: str, output_file: str) -> str:
     """
     # Get frequency analysis
     sorted_frequency = get_letter_frequency(cipher_text)
-    print(sorted_frequency)
+    print('Ordered Letter Frequency:', sorted_frequency)
     
     # Map cipher letters to English letters
     mapping = map_cipher_to_english_frequency(sorted_frequency)
-    
+    print('Cipher Letter Mapping Dictionary:', dict(sorted(mapping.items())))
     # Replace letters in the cipher text
     decrypted_text = replace_letters(cipher_text, mapping)
+    print('Decrypted Text Letter Frequency:', get_letter_frequency(decrypted_text))
     
     # Write to file
     try:
         with open(output_file, 'w', encoding='utf-8') as file:
             file.write(decrypted_text)
-        print(f"Decrypted text saved to {output_file}")
     except Exception as e:
         print(f"Error writing to file: {e}")
     

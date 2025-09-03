@@ -1,5 +1,5 @@
 import os
-from decrypt import decrypt_and_save_to_file
+from decrypt import decrypt_and_save_to_file, get_letter_frequency
 
 
 def read_cipher_file():
@@ -29,7 +29,8 @@ if __name__ == "__main__":
     cipher_content = read_cipher_file()
     if cipher_content:
         decrypted_text = decrypt_and_save_to_file(cipher_content, 'plaintext.txt')
-        print("Decryption complete!")
+        decrypted_text_frequency = get_letter_frequency(decrypted_text)
+        
 
 
 
